@@ -5,8 +5,8 @@ const { getEmployees, addEmployee, updateEmployee } = require("../controllers/em
 
 const router = express.Router();
 
-router.post("/employee", addEmployee);
-router.get("/employee", authenticate, authorizeAdmin, getEmployees);
-router.put("/employee/:id", authenticate, authorizeAdmin, updateEmployee);
+router.post("/", addEmployee);
+router.get("/", authenticate, authorizeAdmin, getEmployees);
+router.put("/:id", authenticate, authorizeAdmin, updateEmployee);
 
 module.exports = router;
