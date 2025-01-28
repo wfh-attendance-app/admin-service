@@ -41,6 +41,24 @@ exports.getEmployees = async (req, res) => {
     }
 };
 
+exports.getEmployeeById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const employee = await User.findByPk(id, {
+            attributes: { exclude: ['password'] },
+        });
+
+        if (!employee) {
+            return res.status(404).json({ error: 'Employee not found' });
+        }
+
+        res.status(200).json({ employee });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 exports.updateEmployee = async (req, res) => {
     try {
         const { id } = req.params;
